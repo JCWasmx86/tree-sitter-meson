@@ -82,11 +82,11 @@ module.exports = grammar({
     argument_list: ($) =>
       seq(
         seq(
-          choice($.keyword_item, $.expression), optional(repeat($._NEWLINE)),
-          repeat(seq(",",optional(repeat($._NEWLINE)), choice($.keyword_item, $.expression), optional(repeat($._NEWLINE)))),
-        ),
-        optional(',')),
-
+          choice($.keyword_item, $.expression)),
+          optional(repeat(seq(",", choice($.keyword_item, $.expression)))
+       ),
+       optional(","),
+     ),
     // keyword_item: id_expression ":" expression
     keyword_item: ($) => seq($.keyword_arg_key, ":", $.expression),
 
