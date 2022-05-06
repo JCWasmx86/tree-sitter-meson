@@ -1,7 +1,7 @@
 module.exports = grammar({
   name: "meson",
-  extras: ($) => [$._comment, /[\s\f\uFEFF\u2060\u200B]|\\\r?\n/],
-
+  extras: ($) => [$._comment, /[\s\f\uFEFF\u2060\u200B]|\\\r?\n/, /[\s\p{Zs}\uFEFF\u2060\u200B]/],
+  precedences: ($) => [[$.function_id, $.id_expression], [$.unary_expression, $.add_operator]],
   // Reference: <https://mesonbuild.com/Syntax.html>
   rules: {
     // this is tree-sitter's root file
@@ -20,7 +20,7 @@ module.exports = grammar({
           $.iteration_statement,
           $.assignment_statement,
         ),
-        $._NEWLINE,
+        //$._NEWLINE,
       ),
 
     // selection_statement: "if" condition NEWLINE (statement)* ("elif" condition NEWLINE (statement)*)* ["else" (statement)*] "endif"
@@ -28,9 +28,9 @@ module.exports = grammar({
       seq(
         "if",
         $.condition,
-        $._NEWLINE,
+        //$._NEWLINE,
         repeat($.statement),
-        repeat(seq("elif", $.condition, $._NEWLINE, repeat($.statement))),
+        repeat(seq("elif", $.condition, /*$._NEWLINE, */repeat($.statement))),
         optional(seq("else", repeat($.statement))),
         "endif",
       ),
@@ -42,7 +42,7 @@ module.exports = grammar({
         $.identifier_list,
         ":",
         $.expression,
-        $._NEWLINE,
+        //$._NEWLINE,
         repeat(choice($.statement, $.jump_statement)),
         "endforeach",
       ),
@@ -55,7 +55,7 @@ module.exports = grammar({
     assignment_operator: ($) => choice("=", "*=", "/=", "%=", "+=", "-="),
 
     // jump_statement: ("break" | "continue") NEWLINE
-    jump_statement: ($) => seq(choice("break", "continue"), $._NEWLINE),
+    jump_statement: ($) => seq(choice("break", "continue")/*, $._NEWLINE*/),
 
     // condition: expression
     condition: ($) => $.expression,
@@ -234,22 +234,22 @@ module.exports = grammar({
     array_literal: ($) =>
       seq(
         "[",
-        seq(optional(repeat($._NEWLINE)),
+        seq(//optional(repeat($._NEWLINE)),
         optional(
           seq(
             $.expression,
             repeat(
               seq(
-                optional(repeat($._NEWLINE)),
+                //optional(repeat($._NEWLINE)),
                 ",",
-                optional(repeat($._NEWLINE)),
+                //optional(repeat($._NEWLINE)),
                 $.expression
               )
             ),
-            optional(seq(optional(","), optional(repeat($._NEWLINE)))),
+            optional(seq(optional(","), /*optional(repeat($._NEWLINE))*/)),
           ),
         )),
-        "]",
+        "]"
       ),
 
     _NEWLINE: ($) => seq(optional($._comment), choice("\n", "\r\n")),
