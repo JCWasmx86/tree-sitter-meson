@@ -258,7 +258,7 @@ module.exports = grammar({
     dictionary_literal: ($) =>
       seq(
         "{",
-        optional(seq($.key_value_item, repeat(seq(",", $.key_value_item)))),
+        seq(optional(seq($.key_value_item, repeat(seq(",", $.key_value_item)))), optional(",")),
         "}",
       ),
 
