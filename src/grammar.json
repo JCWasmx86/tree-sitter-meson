@@ -425,7 +425,7 @@
     },
     "method_expression": {
       "type": "PREC_LEFT",
-      "value": 1,
+      "value": 10000,
       "content": {
         "type": "SEQ",
         "members": [
@@ -466,7 +466,7 @@
     },
     "subscript_expression": {
       "type": "PREC_LEFT",
-      "value": 1,
+      "value": 10000,
       "content": {
         "type": "SEQ",
         "members": [
@@ -1283,6 +1283,16 @@
   ],
   "conflicts": [],
   "precedences": [
+    [
+      {
+        "type": "SYMBOL",
+        "name": "method_expression"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "binary_expression"
+      }
+    ],
     [
       {
         "type": "SYMBOL",

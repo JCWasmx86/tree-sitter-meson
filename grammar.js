@@ -1,7 +1,7 @@
 module.exports = grammar({
   name: "meson",
   extras: ($) => [$._comment, /[\s\f\uFEFF\u2060\u200B]|\\\r?\n/, /[\s\p{Zs}\uFEFF\u2060\u200B]/],
-  precedences: ($) => [[$.function_id, $.id_expression], [$.unary_expression, $.add_operator]],
+  precedences: ($) => [[$.method_expression, $.binary_expression], [$.function_id, $.id_expression], [$.unary_expression, $.add_operator]],
   // Reference: <https://mesonbuild.com/Syntax.html>
   rules: {
     // this is tree-sitter's root file
@@ -99,7 +99,7 @@ module.exports = grammar({
 
     method_expression: ($) =>
       prec.left(
-        1,
+        10000,
         seq(
           $.expression,
           ".",
@@ -111,7 +111,7 @@ module.exports = grammar({
       ),
 
     subscript_expression: ($) =>
-      prec.left(1, seq($.expression, "[", $.expression, "]")),
+      prec.left(10000, seq($.expression, "[", $.expression, "]")),
 
     unary_expression: ($) =>
       choice(
