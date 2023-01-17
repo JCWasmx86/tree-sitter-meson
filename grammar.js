@@ -184,7 +184,7 @@ module.exports = grammar({
     // string_literal: ("'" STRING_SIMPLE_VALUE "'") | ("'''" STRING_MULTILINE_VALUE "'''")
     // STRING_MULTILINE_VALUE: \.*?(''')\
     // STRING_SIMPLE_VALUE: \.*?(?<!\\)(\\\\)*?'\
-    string_literal: ($) => choice($.string_simple, $.string_multiline),
+    string_literal: ($) => choice($.string_simple, $.string_multiline, $.string_format),
 
     // shamelessly stolen from <https://github.com/tree-sitter/tree-sitter-c/>
     escape_sequence: ($) =>
@@ -211,6 +211,30 @@ module.exports = grammar({
           choice(token.immediate(prec(1, /[^\\'\n]+/)), $.escape_sequence),
         ),
         "'",
+      ),
+    string_format: ($) => choice($.string_format_simple, $.string_format_multiline),
+
+    string_format_simple: ($) =>
+      seq(
+       "f'",
+       repeat(
+          choice(token.immediate(prec(1, /[^\\'\n]+/)), $.escape_sequence),
+        ),
+        "'",
+      ),
+
+    string_format_multiline: ($) =>
+      seq(
+        "f'''",
+        repeat(
+          choice(
+            token.immediate(prec(1, /[^\\']+/)),
+            "''",
+            "'",
+            $.escape_sequence,
+          ),
+        ),
+        "'''",
       ),
 
     string_multiline: ($) =>

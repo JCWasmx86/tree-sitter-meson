@@ -889,6 +889,10 @@
         {
           "type": "SYMBOL",
           "name": "string_multiline"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "string_format"
         }
       ]
     },
@@ -966,6 +970,99 @@
         {
           "type": "STRING",
           "value": "'"
+        }
+      ]
+    },
+    "string_format": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "string_format_simple"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "string_format_multiline"
+        }
+      ]
+    },
+    "string_format_simple": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "f'"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "IMMEDIATE_TOKEN",
+                "content": {
+                  "type": "PREC",
+                  "value": 1,
+                  "content": {
+                    "type": "PATTERN",
+                    "value": "[^\\\\'\\n]+"
+                  }
+                }
+              },
+              {
+                "type": "SYMBOL",
+                "name": "escape_sequence"
+              }
+            ]
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "'"
+        }
+      ]
+    },
+    "string_format_multiline": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "f'''"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "IMMEDIATE_TOKEN",
+                "content": {
+                  "type": "PREC",
+                  "value": 1,
+                  "content": {
+                    "type": "PATTERN",
+                    "value": "[^\\\\']+"
+                  }
+                }
+              },
+              {
+                "type": "STRING",
+                "value": "''"
+              },
+              {
+                "type": "STRING",
+                "value": "'"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "escape_sequence"
+              }
+            ]
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "'''"
         }
       ]
     },
