@@ -19,6 +19,7 @@ module.exports = grammar({
           $.selection_statement,
           $.iteration_statement,
           $.assignment_statement,
+          $.jump_statement,
         ),
         //$._NEWLINE,
       ),
@@ -43,7 +44,7 @@ module.exports = grammar({
         ":",
         $.expression,
         //$._NEWLINE,
-        repeat(choice($.statement, $.jump_statement)),
+        repeat($.statement),
         "endforeach",
       ),
 

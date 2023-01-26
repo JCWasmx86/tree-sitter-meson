@@ -288,10 +288,6 @@
           "named": true
         },
         {
-          "type": "jump_statement",
-          "named": true
-        },
-        {
           "type": "statement",
           "named": true
         }
@@ -457,6 +453,10 @@
         },
         {
           "type": "iteration_statement",
+          "named": true
+        },
+        {
+          "type": "jump_statement",
           "named": true
         },
         {

@@ -37,6 +37,10 @@
             {
               "type": "SYMBOL",
               "name": "assignment_statement"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "jump_statement"
             }
           ]
         }
@@ -135,17 +139,8 @@
         {
           "type": "REPEAT",
           "content": {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "statement"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "jump_statement"
-              }
-            ]
+            "type": "SYMBOL",
+            "name": "statement"
           }
         },
         {
