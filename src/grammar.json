@@ -2,8 +2,16 @@
   "name": "meson",
   "rules": {
     "source_file": {
-      "type": "SYMBOL",
-      "name": "build_definition"
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "build_definition"
+        },
+        {
+          "type": "BLANK"
+        }
+      ]
     },
     "build_definition": {
       "type": "REPEAT1",

@@ -5,7 +5,7 @@ module.exports = grammar({
   // Reference: <https://mesonbuild.com/Syntax.html>
   rules: {
     // this is tree-sitter's root file
-    source_file: ($) => $.build_definition,
+    source_file: ($) => optional($.build_definition),
 
     // build_definition: (NEWLINE | statement)*
     build_definition: ($) => repeat1($.statement),
