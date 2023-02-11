@@ -835,19 +835,15 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "0"
-        },
-        {
           "type": "CHOICE",
           "members": [
             {
               "type": "STRING",
-              "value": "o"
+              "value": "0o"
             },
             {
               "type": "STRING",
-              "value": "O"
+              "value": "0O"
             }
           ]
         },
@@ -865,19 +861,15 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "0"
-        },
-        {
           "type": "CHOICE",
           "members": [
             {
               "type": "STRING",
-              "value": "x"
+              "value": "0x"
             },
             {
               "type": "STRING",
-              "value": "X"
+              "value": "0X"
             }
           ]
         },
@@ -895,19 +887,15 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "0"
-        },
-        {
           "type": "CHOICE",
           "members": [
             {
               "type": "STRING",
-              "value": "b"
+              "value": "0b"
             },
             {
               "type": "STRING",
-              "value": "B"
+              "value": "0B"
             }
           ]
         },

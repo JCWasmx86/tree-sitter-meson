@@ -168,18 +168,18 @@ module.exports = grammar({
     _DECIMAL_NUMBER: ($) => /[0-9]+/,
 
     // octal_literal: "0o" OCTAL_NUMBER
-    _octal_literal: ($) => seq("0", choice("o", "O"), $._OCTAL_NUMBER),
+    _octal_literal: ($) => seq(choice("0o", "0O"), $._OCTAL_NUMBER),
 
     // OCTAL_NUMBER: /[0-7]+/
     _OCTAL_NUMBER: ($) => /[0-7]+/,
 
     // hex_literal: "0x" HEX_NUMBER
-    _hex_literal: ($) => seq("0", choice("x", "X"), $._HEX_NUMBER),
+    _hex_literal: ($) => seq(choice("0x", "0X"), $._HEX_NUMBER),
 
     // HEX_NUMBER: /[a-fA-F0-9]+/
     _HEX_NUMBER: ($) => /[a-fA-F0-9]+/,
 
-    _binary_literal: ($) => seq("0", choice("b", "B"), $._BINARY_NUMBER),
+    _binary_literal: ($) => seq(choice("0b", "0B"), $._BINARY_NUMBER),
     _BINARY_NUMBER: ($) => /[01]+/,
 
     // string_literal: ("'" STRING_SIMPLE_VALUE "'") | ("'''" STRING_MULTILINE_VALUE "'''")

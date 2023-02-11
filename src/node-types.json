@@ -683,7 +683,27 @@
     "named": false
   },
   {
-    "type": "0",
+    "type": "0B",
+    "named": false
+  },
+  {
+    "type": "0O",
+    "named": false
+  },
+  {
+    "type": "0X",
+    "named": false
+  },
+  {
+    "type": "0b",
+    "named": false
+  },
+  {
+    "type": "0o",
+    "named": false
+  },
+  {
+    "type": "0x",
     "named": false
   },
   {
@@ -719,18 +739,6 @@
     "named": false
   },
   {
-    "type": "B",
-    "named": false
-  },
-  {
-    "type": "O",
-    "named": false
-  },
-  {
-    "type": "X",
-    "named": false
-  },
-  {
     "type": "[",
     "named": false
   },
@@ -740,10 +748,6 @@
   },
   {
     "type": "and",
-    "named": false
-  },
-  {
-    "type": "b",
     "named": false
   },
   {
@@ -803,19 +807,11 @@
     "named": false
   },
   {
-    "type": "o",
-    "named": false
-  },
-  {
     "type": "or",
     "named": false
   },
   {
     "type": "true",
-    "named": false
-  },
-  {
-    "type": "x",
     "named": false
   },
   {
