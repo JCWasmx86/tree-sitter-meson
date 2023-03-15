@@ -20,6 +20,7 @@ module.exports = grammar({
           $.iteration_statement,
           $.assignment_statement,
           $.jump_statement,
+          $.expression,
         ),
         //$._NEWLINE,
       ),

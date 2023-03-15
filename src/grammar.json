@@ -49,6 +49,10 @@
             {
               "type": "SYMBOL",
               "name": "jump_statement"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "expression"
             }
           ]
         }
