@@ -8,12 +8,13 @@ module.exports = grammar({
     source_file: ($) => optional($.build_definition),
 
     // build_definition: (NEWLINE | statement)*
-    build_definition: ($) => repeat1($.statement),
+    build_definition: ($) => repeat1($._statement_without),
 
     // statement: (expression_statement | selection_statement | iteration_statement | assignment_statement) NEWLINE
     statement: ($) =>
       seq(
-        choice(
+        $._statement_without,
+        /*choice(
           $._comment,
           $.expression,
           $.selection_statement,
@@ -21,10 +22,17 @@ module.exports = grammar({
           $.assignment_statement,
           $.jump_statement,
           $.expression,
-        ),
+        ),*/
         $._NEWLINE,
       ),
-
+    _statement_without: ($) => choice($._comment,
+          $.expression,
+          $.selection_statement,
+          $.iteration_statement,
+          $.assignment_statement,
+          $.jump_statement,
+          $.expression,
+	),
     // selection_statement: "if" condition NEWLINE (statement)* ("elif" condition NEWLINE (statement)*)* ["else" (statement)*] "endif"
     selection_statement: ($) =>
       seq(
