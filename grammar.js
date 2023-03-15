@@ -22,7 +22,7 @@ module.exports = grammar({
           $.jump_statement,
           $.expression,
         ),
-        //$._NEWLINE,
+        $._NEWLINE,
       ),
 
     // selection_statement: "if" condition NEWLINE (statement)* ("elif" condition NEWLINE (statement)*)* ["else" (statement)*] "endif"
@@ -30,10 +30,10 @@ module.exports = grammar({
       seq(
         "if",
         $.condition,
-        //$._NEWLINE,
+        $._NEWLINE,
         repeat($.statement),
-        repeat(seq("elif", $.condition, /*$._NEWLINE, */repeat($.statement))),
-        optional(seq("else", repeat($.statement))),
+        repeat(seq("elif", $.condition, $._NEWLINE, repeat($.statement))),
+        optional(seq("else", $._NEWLINE, repeat($.statement))),
         "endif",
       ),
 
@@ -44,7 +44,7 @@ module.exports = grammar({
         $.identifier_list,
         ":",
         $.expression,
-        //$._NEWLINE,
+        $._NEWLINE,
         repeat($.statement),
         "endforeach",
       ),
