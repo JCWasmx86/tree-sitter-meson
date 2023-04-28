@@ -1,4 +1,10 @@
-a = b # c
+a = (
+    b # c
+)
 # full-line comment
-a = b # c
-a = b # c
+a = (
+    b # c
+)
+a = (
+    b # c
+)

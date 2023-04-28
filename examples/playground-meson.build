@@ -9,7 +9,9 @@ var2 += [4]
 
 x = 1 + 2
 y = 3 * 4
-d = 5 % 3 # Yields 2.
+d = (
+    5 % 3 # Yields 2.
+)
 
 int_255 = 0xFF
 int_493 = 0o755
@@ -18,8 +20,12 @@ int_1365 = 0b10101010101
 single_quote = 'contains a \' character'
 elem = array[123]
 
-combined = str1 + '_' + str2 # combined is now abc_xyz
-joined = '/usr/share' / 'projectname'    # => /usr/share/projectname
+combined = (
+    str1 + '_' + str2 # combined is now abc_xyz
+)
+joined = (
+    '/usr/share' / 'projectname' # => /usr/share/projectname
+)
 
 string_var = '42'
 num = string_var.to_int()
@@ -27,21 +33,20 @@ num = string_var.to_int()
 my_dict = {'foo': 42, 'bar': 'baz'}
 
 if 'foo' in my_dict
-# This condition is true
+    # This condition is true
 endif
 if 42 in my_dict
-# This condition is false
+    # This condition is false
 endif
 if 'foo' not in my_dict
-# This condition is false
+    # This condition is false
 endif
 
-progs = [['prog1', ['prog1.c', 'foo.c']],
-         ['prog2', ['prog2.c', 'bar.c']]]
+progs = [['prog1', ['prog1.c', 'foo.c']], ['prog2', ['prog2.c', 'bar.c']]]
 
 foreach p : progs
-  exe = executable(p[0], p[1])
-  test(p[0], exe)
-  break
-  continue
+    exe = executable(p[0], p[1])
+    test(p[0], exe)
+    break
+    continue
 endforeach
